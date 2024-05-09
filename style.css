@@ -1,0 +1,117 @@
+/* styles.css */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    overflow: hidden;
+}
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 30vh;
+}
+
+/* Centered text within its parent container */
+#title {
+    font-size: 3em;
+    color: #fff;
+    opacity: 0;
+    animation: fade-in 2s ease-in-out forwards, move-up 5s ease-in-out;
+    /* Two animations: fade-in and move-up */
+    text-align: center;
+}
+
+.circle-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Adjusted the circle size and opacity */
+.circle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    animation: fall 5s linear infinite;
+    /* Removed the fade animation */
+    animation-delay: calc(var(--delay) * 1s); /* Varying animation delay */
+    opacity: 0;
+}
+
+@keyframes fall {
+    0% {
+        opacity: 0; /* Start with 0 opacity */
+        transform: translate(
+            calc(-10px + var(--xStart)),
+            calc(-10px + var(--yStart))
+        ); /* Start at random X and Y */
+    }
+    50% {
+        opacity: 1; /* Fade in */
+    }
+    100% {
+        opacity: 0; /* Fade out */
+        transform: translate(
+            calc(-10px + var(--xEnd)),
+            calc(-10px + var(--yEnd))
+        ); /* Random ending X and Y */
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Keyframes to control the fading effect */
+@keyframes move-up {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Sidebar styles/ code */
+#sidebar {
+    position: fixed;
+    top: -40px; /* Change this value to adjust the initial height */
+    left: 0;
+    width: 97.5%;
+    background: #333; /* Dark grey background color */
+    transition: top 0.75s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start; /* Align links to the left */
+    padding: 20px;
+    z-index: 1000;
+    border-bottom-right-radius: 15px; /* Rounded corners */
+    border-bottom-left-radius: 15px; /* Rounded corners */
+}
+
+#sidebar:hover {
+    top: 0;
+}
+
+#sidebar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 18px;
+}
+
+#sidebar a:hover {
+    color: #c0c0c0; /* Light grey on hover */
+}
