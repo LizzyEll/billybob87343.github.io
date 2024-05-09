@@ -1,1 +1,244 @@
-<h1>hi</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBOB WEBSITE</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            overflow: hidden;
+        }
+
+        #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 30vh;
+        }
+
+        /* Centered text within its parent container */
+        #title {
+            font-size: 3em;
+            color: #fff;
+            animation: fade-in 2s ease-in-out forwards, move-up 5s ease-in-out;
+            /* Two animations: fade-in and move-up */
+            text-align: center;
+        }
+
+        .circle-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Adjusted the circle size and opacity */
+        .circle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            animation: fall 5s linear infinite;
+            /* Removed the fade animation */
+            animation-delay: calc(var(--delay) * 1s);
+            /* Varying animation delay */
+            opacity: 0;
+        }
+
+        @keyframes fall {
+            0% {
+                opacity: 0;
+                /* Start with 0 opacity */
+                transform: translate(calc(-10px + var(--xStart)),
+                        calc(-10px + var(--yStart)));
+                /* Start at random X and Y */
+            }
+
+            50% {
+                opacity: 1;
+                /* Fade in */
+            }
+
+            100% {
+                opacity: 0;
+                /* Fade out */
+                transform: translate(calc(-10px + var(--xEnd)),
+                        calc(-10px + var(--yEnd)));
+                /* Random ending X and Y */
+            }
+        }
+
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Keyframes to control the fading effect */
+        @keyframes move-up {
+            0% {
+                opacity: 0;
+                transform: translateY(100%);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Tab styles */
+        #tabs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            display: flex;
+            justify-content: center; /* Center the tabs horizontally */
+            z-index: 1; /* Ensure tabs are above other content */
+        }
+
+        .tab {
+            color: white;
+            text-decoration: none;
+            padding: 10px 10px;
+            cursor: pointer;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            margin: 0 5px; /* Add horizontal margin */
+        }
+
+        .tab:hover {
+            background-color: #444;
+        }
+
+        .tab.active {
+            background-color: #444;
+            border-bottom: 2px solid #444; /* Active tab indicator */
+        }
+
+        /* Iframe styles */
+        .iframe-container {
+            width: 100%;
+            display: none;
+        }
+
+        .iframe-container.active {
+            display: block;
+        }
+
+        iframe {
+            border: none;
+            width: 100%;
+            height: 100vh; /* Fill the entire iframe-container */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Tabs -->
+    <div id="tabs">
+        <div class="tab active" 
+          onclick="showContent('home')">Home</div>
+        <div class="tab"
+          onclick="showContent('games')">Games</div>
+        <div class="tab" onclick="showContent('aboutme')">About me</div>
+        <div class="tab" onclick="showContent('music')">Music</div>
+        <div class="tab" onclick="showContent('updateLog')">Update Log</div>
+        <div class="tab" onclick="showContent('chat')">Chat</div>
+        <div class="tab" onclick="showContent('movie')">Movies</div>
+  </div>
+
+    <!-- Iframe containers -->
+    <div class="iframe-container" id="home">
+        <iframe src="index.html"></iframe>
+    </div>
+    <div class="iframe-container" id="games">
+        <iframe src="game.html"></iframe>
+    </div>
+    <div class="iframe-container" id="aboutme">
+        <iframe src="aboutme.html"></iframe>
+    </div>
+    <div class="iframe-container" id="music">
+        <iframe src="music.html"></iframe>
+    </div>
+  <div class="iframe-container" id="updateLog">
+      <iframe src="updateLog.html"></iframe>
+  </div>
+   <div class="iframe-container" id="movie">
+      <iframe src="movie.html"></iframe>
+   </div>
+    <div class="iframe-container" id="Chat">
+     <iframe src="chat.html"></iframe>
+
+  </div>
+
+    <!-- Container for centering content -->
+    <div id="container">
+        <!-- Text that fades into existence and moves up, centered -->
+        <div id="title">IBOB Official Website</div>
+    </div>
+    <div class="circle-container"></div>
+
+    <!-- Link JavaScript file -->
+    <script src="script.js"></script>
+
+    <script>
+        function showContent(tabName) {
+            // Hide all iframes
+            const iframes = document.querySelectorAll('.iframe-container');
+            iframes.forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Show the selected iframe
+            const selectedIframe = document.getElementById(tabName);
+            if (selectedIframe) {
+                selectedIframe.classList.add('active');
+            }
+
+            // Update active tab
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            const activeTab = document.querySelector('.tab[data-tab="' + tabName + '"]');
+            if (activeTab) {
+                activeTab.classList.add('active');
+            }
+
+            // Show or hide the title based on the selected tab
+            const title = document.getElementById('title');
+            title.style.display = tabName === 'home' ? 'block' : 'none';
+
+            // Hide the circles when the tab is not "home"
+            const circleContainer = document.querySelector('.circle-container');
+            circleContainer.style.display = tabName === 'home' ? 'block' : 'none';
+        }
+    </script>
+  <script>
+      (function () {
+          var script = document.createElement('script');
+          script.src = "//cdn.jsdelivr.net/npm/eruda";
+          document.body.appendChild(script);
+          script.onload = function () {
+              eruda.init();
+              console.log("Hello");
+              console.log("This is made by billybob87343")
+              console.log("or MaskedMayem")
+              console.log("If you got here by clicking random buttons, don't worry ur fine just close it its for devs only")
+              console.log("If you want the source code, just click on sources or add view-source:(website url here) and it works for any website to. If you want to mess around test some blooketmarks do it idrc")
+          }
+      })();
+  </script>
+</body>
+</html>
