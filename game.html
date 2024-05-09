@@ -12,8 +12,7 @@
             margin: 0;
             padding: 0;
             background-color: #000;
-            overflow: auto
-            /* Allow scrolling */
+            overflow: auto;
             font-family: Arial, sans-serif;
         }
 
@@ -33,7 +32,7 @@
             text-align: center;
         }
 
-        .circle-container {
+       .circle-container {
             position: absolute;
             top: 0;
             left: 0;
@@ -42,7 +41,7 @@
             pointer-events: none;
         }
 
-        .circle {
+       .circle {
             position: absolute;
             width: 20px;
             height: 20px;
@@ -92,82 +91,80 @@
             }
         }
 
-      .game-button {
-        margin: 0 20px;
-        font-size: 24px;
-        font-weight: 600;
-        color: #fff;
-        background-color: transparent;
-        border: 2px solid #fff;
-        padding: 10px 20px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        border-radius: 10px;
-      }
+       .game-button {
+            margin: 0 20px;
+            font-size: 24px;
+            font-weight: 600;
+            color: #fff;
+            background-color: transparent;
+            border: 2px solid #fff;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 10px;
+        }
 
-      .game-button:hover {
-        background-color: #555;
-      }
+       .game-button:hover {
+            background-color: #555;
+        }
 
-      .game-button:focus {
-        outline: none;
-        box-shadow: 0 0 0 2px #fff;
-      }
+       .game-button:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #fff;
+        }
 
-      .game-button:active {
-        background-color: #333;
-        color: #fff;
-      }
+       .game-button:active {
+            background-color: #333;
+            color: #fff;
+        }
 
-      .game-button:disabled {
-        background-color: #ccc;
-        color: #999;
-        cursor: not-allowed;
-      }
-      
-      .game-buttons {
-        display: flex;
-        justify-content: center;
-        margin-top: 50px;
-        margin-bottom: 50px;
-        
-      }
-      .embed-container {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          overflow: hidden;
-          z-index: 9999; /* Ensure it's on top of other elements */
-      }
+       .game-button:disabled {
+            background-color: #ccc;
+            color: #999;
+            cursor: not-allowed;
+        }
 
-      .embed-container iframe {
-          width: 100vh;
-          height: 100vh; /* Make the iframe fill the entire container */
-          border: none;
-      }
+       .game-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
 
-        .embed-container {
+       .embed-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            z-index: 9999;
+        }
+
+       .embed-container iframe {
+            width: 100vh;
+            height: 100vh;
+            border: none;
+        }
+
+       .embed-container {
             position: relative;
             overflow: hidden;
-            width: 70%; /* Adjust the width as needed */
-            max-width: 1000px; /* Add a maximum width if desired */
+            width: 70%;
+            max-width: 1000px;
             margin: 0 auto;
-            /* Center the iframe */
         }
 
-        .embed-container iframe {
+       .embed-container iframe {
             width: 100%;
-            height: 800px; /* Adjust the height as needed */
+            height: 800px;
             border: none;
-            /* Remove iframe border */
         }
 
-        .exit-button {
-            display: none; /* Initially hidden */
+       .exit-button {
+            display: none;
             position: absolute;
-            top: 20px;
+           top: 20px;
             right: 20px;
             font-size: 24px;
             color: #fff;
@@ -292,7 +289,7 @@
       }
 
       // Generate circles periodically
-      const circlesPerSecond = 350; // Adjust this value to control the number of circles per second
+      const circlesPerSecond = 150; // Adjust this value to control the number of circles per second
       const interval = 100 / circlesPerSecond;
       setInterval(createCircle, interval);
 
