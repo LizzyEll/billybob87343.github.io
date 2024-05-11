@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Testing for updates page</title>
+  </head>
+  <body>
+    <h1>Log</h1>
+    <div id="log"></div>
+
+    <script>
+      // Function to update the log
+      function updateLog(message) {
+        // Get the log element from the DOM
+        const logElement = document.getElementById('log');
+
+        // Create a new log entry element
+        const logEntry = document.createElement('p');
+        logEntry.textContent = message;
+
+        // Add the new log entry to the log element
+        logElement.prepend(logEntry);
+
+        // Limit the number of log entries to 10
+        const logEntries = logElement.children;
+        if (logEntries.length > 10) {
+          logElement.removeChild(logEntries[logEntries.length - 1]);
+        }
+      }
+
+      // Example usage of the updateLog function
+      updateLog('test');
+    </script>
+  </body>
+</html>
